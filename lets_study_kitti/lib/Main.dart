@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lets_study_kitti/globals.dart';
 import 'package:lets_study_kitti/home_page/home_page.dart';
 import 'package:lets_study_kitti/routes.dart';
 import 'package:lets_study_kitti/screens/email_verification.dart';
 import 'package:lets_study_kitti/screens/login_page.dart';
+import 'package:lets_study_kitti/screens/profile_page.dart';
 import 'package:lets_study_kitti/screens/review_form_page.dart'
     show ReviewFormPage;
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,6 +20,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await UserDetails().addUserDetails();
   runApp(const MyApp());
 }
 
@@ -40,6 +43,8 @@ class MyApp extends StatelessWidget {
         Routes.homePage: (BuildContext context) => const HomePage(),
         Routes.verifyEmailPage: (BuildContext context) =>
             const VerificationPage(),
+        Routes.profilePage: (BuildContext context) =>
+            const ProfilePage(userID: 'NAN'),
       },
       title: 'Flutter FormBuilder Demo',
       debugShowCheckedModeBanner: false,
